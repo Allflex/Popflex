@@ -26,21 +26,37 @@
                     </address>
                 </div>
                 <div class="col-md-4 center-block text-center">
-                    <h1>Sales Order</h1><br />
-                    <span class="barcode">ORD123456</span>
+                    <h1>Sales Order</h1>
+                    <br />
+                    <div class="barcode">
+                        <label>Order Number</label>
+                        <br />
+                        <span>*ORD123456*</span>
+                        <br />
+                        <label>ORD123456</label>
+                    </div>
                 </div>
                 <div class="col-md-4 text-right">
+                    <div class="orderinfo">
+                        <label>PO #</label>: SOCU893489236
+                        <br />
+                        <label>Order Date</label>: mm/dd/yyyy
+                        <br />
+                        <label>Due Date</label>: mm/dd/yyyy
+                        <br />
+                    </div>
                     <br />
-                    <br />
-                    OrderDate:<br />
-                    mm/dd/yyyy<br />
-                    <br />
-                    StripeTransactionNumber:<br />
-                    xxxyyyzzzaaabbbccc<br />
+                    <div class="offset-md-6 barcode text-center">
+                        <label>Master ID</label>
+                        <br />
+                        <span>*55123456*</span>
+                        <br />
+                        <label>55123456</label>
+                    </div>
                 </div>
             </div>
             <hr />
-            <div class="row">
+            <div class="row address">
                 <div class="col-md-6">
                     <h4>Bill To:</h4>
                     <address>
@@ -49,6 +65,7 @@
                         BillToAddressLine3<br />
                         BillToCity, BillToState<br />
                         BillToZipCode<br />
+                        Phone
                     </address>
                 </div>
                 <div class="col-md-6">
@@ -59,6 +76,7 @@
                         ShipToAddressLine3<br />
                         ShipToCity, ShipToState<br />
                         ShipToZipCode<br />
+                        Phone
                     </address>
                 </div>
             </div>
@@ -66,35 +84,17 @@
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">text</th>
-                            <th scope="col">text</th>
-                            <th scope="col">text</th>
-                            <th scope="col">text</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>text</td>
-                            <td>text</td>
-                            <td>text</td>
-                            <td>text</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">text</th>
-                            <th scope="col">text</th>
-                            <th scope="col">text</th>
+                            <th scope="col">Requisitioner</th>
+                            <th scope="col">Ship Via</th>
+                            <th scope="col">Freight PPD</th>
                             <th scope="col">text</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>text</td>
-                            <td>text</td>
-                            <td>text</td>
+                            <td>{{Requisitioner}}</td>
+                            <td>{{ShipMethod}}</td>
+                            <td>{{Yes/No}}</td>
                             <td>text</td>
                         </tr>
                     </tbody>
@@ -107,8 +107,9 @@
                             <th scope="col">#</th>
                             <th scope="col">Qty</th>
                             <th scope="col">Unit</th>
-                            <th scope="col">Item Number</th>
+                            <th scope="col" class="text-nowrap">Item Number</th>
                             <th scope="col">Description</th>
+                            <th scope="col">Comments</th>
                             <th scope="col">Unit Price</th>
                             <th scope="col">Total</th>
                         </tr>
@@ -118,8 +119,9 @@
                             <th scope="row">1</th>
                             <td>40</td>
                             <td>BG/25</td>
-                            <td>GXF025-Y</td>
+                            <td class="text-nowrap">GXF025-Y</td>
                             <td>Global Maxi Female Yellow 1-25</td>
+                            <td></td>
                             <td>$17.00</td>
                             <td>$680.00</td>
                         </tr>
@@ -127,8 +129,9 @@
                             <th scope="row">2</th>
                             <td>5</td>
                             <td>BG/25</td>
-                            <td>GXF025-B</td>
+                            <td class="text-nowrap">GXF025-B</td>
                             <td>Global Maxi Female Blue 1-25</td>
+                            <td></td>
                             <td>$17.00</td>
                             <td>$85.00</td>
                         </tr>
@@ -136,10 +139,31 @@
                             <th scope="row">3</th>
                             <td>12</td>
                             <td>BG/25</td>
-                            <td>GXF025-G</td>
+                            <td class="text-nowrap">GXF025-G</td>
                             <td>Global Maxi Female Green 1-25</td>
+                            <td></td>
                             <td>$17.00</td>
                             <td>$204.00</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>14</td>
+                            <td>EA</td>
+                            <td class="text-nowrap">GXF72-Y-SS</td>
+                            <td>MAXI FEM: 72 YELLOW (IMAGE, LOGO FNT & BK)</td>
+                            <td>NO LOGO; NO BACK; Line 1: TIM; Line 2: IS; Line 3: THE; Line 4: BEST;</td>
+                            <td>$1.110</td>
+                            <td>$15.54</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td>14</td>
+                            <td>EA</td>
+                            <td class="text-nowrap">GSM-Y-SS</td>
+                            <td>SMALL MALE YELLOW</td>
+                            <td></td>
+                            <td>$0.310</td>
+                            <td>$4.34</td>
                         </tr>
                     </tbody>
                 </table>

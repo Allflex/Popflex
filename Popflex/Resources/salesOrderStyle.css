@@ -1,5 +1,39 @@
-﻿/* Sticky footer styles
--------------------------------------------------- */
+﻿@font-face {
+  font-family: 'Free3of9Extended';
+  src: url('Free3of9Extended.woff') format('woff'),
+       url('Free3of9Extended.ttf') format('truetype'),
+       url('Free3of9Extended.svg#Free3of9Extended') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'fre3of9x';
+  src: url('fre3of9x.eot');
+  src: url('fre3of9x.woff2') format('woff2'),
+       url('fre3of9x.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Free3of9';
+  src: url('Free3of9.woff') format('woff'),
+       url('Free3of9.ttf') format('truetype'),
+       url('Free3of9.svg#Free3of9') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'free3of9';
+  src: url('free3of9.eot');
+  src: url('free3of9.woff2') format('woff2'),
+       url('free3of9.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html {
   position: relative;
   min-height: 100%;
@@ -7,6 +41,23 @@ html {
 body {
   margin-bottom: 60px; /* Margin bottom by footer height */
 }
+.address address{
+    padding-left: 15px;
+}
+.barcode {
+    line-height: 18px;
+}
+.barcode span {
+    font-family: Free3of9, free3of9, sans-serif;
+    font-size: 48px;
+}
+.orderinfo{
+    padding-top: 40px;
+}
+.orderinfo label{
+    font-weight: bold;
+}
+
 .footer {
   position: absolute;
   bottom: 0;

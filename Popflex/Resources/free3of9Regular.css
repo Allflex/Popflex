@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'Free3of9';
+  src: url('Free3of9.woff') format('woff'),
+       url('Free3of9.ttf') format('truetype'),
+       url('Free3of9.svg#Free3of9') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'free3of9';
+  src: url('free3of9.eot');
+  src: url('free3of9.woff2') format('woff2'),
+       url('free3of9.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
