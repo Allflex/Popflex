@@ -17,7 +17,7 @@
 <!-- ================================================ -->
         <div class="container">
             <div class="row">
-                <div class="col-md-4 center-block text-center">
+                <div class="col-md-4 center-block text-center text-nowrap">
                     <address>
                         <img class="img-responsive" src="allflex.png" title="Company Logo" alt="Company Logo" width="45%" /><br />
                         P.O. Box 61226 &bull; 2805 East 14th Street<br />
@@ -81,92 +81,134 @@
                 </div>
             </div>
             <div class="row">
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Requisitioner</th>
-                            <th scope="col">Ship Via</th>
-                            <th scope="col">Freight PPD</th>
-                            <th scope="col">text</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{Requisitioner}}</td>
-                            <td>{{ShipMethod}}</td>
-                            <td>{{Yes/No}}</td>
-                            <td>text</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Account Number</th>
+                                <th scope="col">Requisitioner</th>
+                                <th scope="col">Ship Via</th>
+                                <th scope="col">Freight PPD</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{CustomerNumber}}</td>
+                                <td>{{Requisitioner}}</td>
+                                <td>{{ShipMethod}}</td>
+                                <td>{{Yes/No}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div class="row">
-                <table class="table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Qty</th>
-                            <th scope="col">Unit</th>
-                            <th scope="col" class="text-nowrap">Item Number</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Comments</th>
-                            <th scope="col">Unit Price</th>
-                            <th scope="col">Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>40</td>
-                            <td>BG/25</td>
-                            <td class="text-nowrap">GXF025-Y</td>
-                            <td>Global Maxi Female Yellow 1-25</td>
-                            <td></td>
-                            <td>$17.00</td>
-                            <td>$680.00</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>5</td>
-                            <td>BG/25</td>
-                            <td class="text-nowrap">GXF025-B</td>
-                            <td>Global Maxi Female Blue 1-25</td>
-                            <td></td>
-                            <td>$17.00</td>
-                            <td>$85.00</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>12</td>
-                            <td>BG/25</td>
-                            <td class="text-nowrap">GXF025-G</td>
-                            <td>Global Maxi Female Green 1-25</td>
-                            <td></td>
-                            <td>$17.00</td>
-                            <td>$204.00</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>14</td>
-                            <td>EA</td>
-                            <td class="text-nowrap">GXF72-Y-SS</td>
-                            <td>MAXI FEM: 72 YELLOW (IMAGE, LOGO FNT & BK)</td>
-                            <td>NO LOGO; NO BACK; Line 1: TIM; Line 2: IS; Line 3: THE; Line 4: BEST;</td>
-                            <td>$1.110</td>
-                            <td>$15.54</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">5</th>
-                            <td>14</td>
-                            <td>EA</td>
-                            <td class="text-nowrap">GSM-Y-SS</td>
-                            <td>SMALL MALE YELLOW</td>
-                            <td></td>
-                            <td>$0.310</td>
-                            <td>$4.34</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Qty</th>
+                                <th scope="col">Unit</th>
+                                <th scope="col" class="text-nowrap">Item Number</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Comments</th>
+                                <th scope="col" class="text-right">Unit Price</th>
+                                <th scope="col" class="text-right">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>40</td>
+                                <td>BG/25</td>
+                                <td class="text-nowrap">GXF025-Y</td>
+                                <td>Global Maxi Female Yellow 1-25</td>
+                                <td></td>
+                                <td class="text-right">$17.00</td>
+                                <td class="text-right">$680.00</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>5</td>
+                                <td>BG/25</td>
+                                <td class="text-nowrap">GXF025-B</td>
+                                <td>Global Maxi Female Blue 1-25</td>
+                                <td></td>
+                                <td class="text-right">$17.00</td>
+                                <td class="text-right">$85.00</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>12</td>
+                                <td>BG/25</td>
+                                <td class="text-nowrap">GXF025-G</td>
+                                <td>Global Maxi Female Green 1-25</td>
+                                <td></td>
+                                <td class="text-right">$17.00</td>
+                                <td class="text-right">$204.00</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">4</th>
+                                <td>14</td>
+                                <td>EA</td>
+                                <td class="text-nowrap">GXF72-Y-SS</td>
+                                <td>MAXI FEM: 72 YELLOW (IMAGE, LOGO FNT & BK)</td>
+                                <td>NO LOGO; NO BACK; Line 1: TIM; Line 2: IS; Line 3: THE; Line 4: BEST;</td>
+                                <td class="text-right">$1.110</td>
+                                <td class="text-right">$15.54</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">5</th>
+                                <td>14</td>
+                                <td>EA</td>
+                                <td class="text-nowrap">GSM-Y-SS</td>
+                                <td>SMALL MALE YELLOW</td>
+                                <td></td>
+                                <td class="text-right">$0.310</td>
+                                <td class="text-right">$4.34</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Comments</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{Comments}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="offset-md-2 col-md-3 text-right">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th scope="row">Subtotal</th>
+                                <td>$988.88</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Tax</th>
+                                <td>$79.1104</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Shipping</th>
+                                <td>$34.00</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Total</th>
+                                <td>$1101.99</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <footer class="footer">
