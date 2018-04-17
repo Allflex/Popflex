@@ -1,11 +1,14 @@
 ﻿<!DOCTYPE html>
-<html lang=\"en\">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="bootstrap.min.css" rel="stylesheet">
-        <link href="salesOrderStyle.css" rel="stylesheet">
+        {{#each styles}}
+        <style type="text/css">
+            {{this}}
+        </style>
+        {{/each}}
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -19,7 +22,7 @@
             <div class="row">
                 <div class="col-md-4 center-block text-center text-nowrap">
                     <address>
-                        <img class="img-responsive" src="allflex.png" title="Company Logo" alt="Company Logo" width="45%" /><br />
+                        <img class="img-responsive" alt="Company Logo" src="{{CompanyLogo}}" width="256" /><br />
                         P.O. Box 61226 &bull; 2805 East 14th Street<br />
                         Dallas/Ft. Worth Airport, Texas &bull; 75261-226 &bull; USA<br />
                         Telephone (972) 456-3686 &bull; Fax (972) 456-3969<br />
@@ -213,7 +216,7 @@
         </div>
         <footer class="footer">
             <div class="container">
-                <img src="..\..\popflex.png" title="Popflex Weasel" alt="Popflex Weasel logo" width="32px" />
+                <img src="{{PopflexLogo}}" title="Popflex Weasel" alt="Popflex Weasel logo" width="32" />
                 <span class="text-muted">Created with all the love in the world by Popflex. (https://github.com/Allflex/Popflex)</span>
             </div>
         </footer>

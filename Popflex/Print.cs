@@ -3,39 +3,68 @@
     public class Print
     {
         private static readonly TuesPechkin.IConverter PdfConverter = CreatePdfConverter();
-
-        public void SalesOrder(AllfleXML.FlexOrder.OrderHeader order)
+        
+        public static string SalesOrder(AllfleXML.FlexOrder.OrderHeader order, string htmlTempalte = null, string outputPath = null)
         {
-            SalesOrder(order, GetHtmlTemplate());
+            var config = new AutoMapper.MapperConfiguration(cfg => cfg.CreateMap<AllfleXML.FlexOrder.OrderHeader, OrderTemplate>());
+            var mapper = config.CreateMapper();
+
+            return SalesOrder(mapper.Map<OrderTemplate>(order), htmlTempalte, outputPath);
         }
 
-        public void SalesOrder(AllfleXML.FlexOrder.OrderHeader order, string htmlTemplate)
+        public static string SalesOrder(OrderTemplate order, string htmlTempalte = null, string outputPath = null)
         {
-            // TODO: Do something with the result
+            if (string.IsNullOrWhiteSpace(htmlTempalte))
+            {
+                htmlTempalte = System.IO.File.ReadAllText(@"Resources\salesOrderBody.html");
+                order.styles.Add(System.IO.File.ReadAllText(@"Resources\bootstrap.min.css"));
+                order.styles.Add(System.IO.File.ReadAllText(@"Resources\salesOrderStyle.css"));
+            }
+            
+            var html = ToHtml(order, htmlTempalte);
+            
+            System.Diagnostics.Process.Start(SaveHTML(html));
+            return SavePdf(html, outputPath);
         }
         
-        public static string ToHtml(AllfleXML.FlexOrder.OrderHeader order, string htmlTemplate)
+        private static string ToHtml(AllfleXML.FlexOrder.OrderHeader order, string htmlTemplate)
         {
             var template = HandlebarsDotNet.Handlebars.Compile(htmlTemplate);
             return template(order);
         }
+        
+        private static string GetTempHTMLOutputPath()
+        {
+            var tmpFile = System.IO.Path.GetTempFileName();
+            var htmlFile = System.IO.Path.ChangeExtension(tmpFile, ".html");
+            System.IO.File.Move(tmpFile, htmlFile);
+            return htmlFile;
+        }
 
-        public static string SavePdf(string html)
+        private static string SaveHTML(string html, string path = null)
+        {
+            if (string.IsNullOrWhiteSpace(path)) path = GetTempHTMLOutputPath();
+            System.IO.File.WriteAllText(path, html);
+            return path;
+        }
+
+        private static string GetTempPDFOutputPath()
         {
             var tmpFile = System.IO.Path.GetTempFileName();
             var pdfFile = System.IO.Path.ChangeExtension(tmpFile, ".pdf");
             System.IO.File.Move(tmpFile, pdfFile);
-            SavePdf(html, pdfFile);
             return pdfFile;
         }
 
-        public static void SavePdf(string html, string path)
+        private static string SavePdf(string html, string path = null)
         {
+            if (string.IsNullOrWhiteSpace(path)) path = GetTempPDFOutputPath();
             var pdfBuffer = HtmlToPdf(html);
             System.IO.File.WriteAllBytes(path, pdfBuffer);
+            return path;
         }
 
-        public static byte[] HtmlToPdf(string html)
+        private static byte[] HtmlToPdf(string html)
         {
             var document = new TuesPechkin.HtmlToPdfDocument
             {
@@ -62,14 +91,6 @@
             var deployment = new TuesPechkin.WinAnyCPUEmbeddedDeployment(tempDeployment);
             var toolset = new TuesPechkin.PdfToolset(deployment);
             return new TuesPechkin.ThreadSafeConverter(toolset);
-        }
-
-        public static string GetHtmlTemplate()
-        {
-            var BootstrapStyle = $"\n<style type=\"text/css\">\n\t{Popflex.Properties.Resources.bootstrap_min}\n</style>\n";
-            var SalesOrderStyle = $"\n<style type=\"text/css\">\n\t{Popflex.Properties.Resources.salesOrderStyle}\n</style>\n";
-            var HtmlHeader = "<head>" + BootstrapStyle + SalesOrderStyle + "\n</head>";
-            return $"<!DOCTYPE html>\n<html lang=\"en\">\n\t{HtmlHeader}\n\t<body>\n{Popflex.Properties.Resources.salesOrderBody}\n\t</body>\n</html>";
         }
     }
 }

@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F491AD
 		nuget.config = nuget.config
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Popflex.Test", "Popflex.Test\Popflex.Test.csproj", "{15FC71F4-95F7-40B1-AA6E-FAF7C7FE96B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{3F6928CC-A271-44EC-8AD7-53E8D01FD860}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F6928CC-A271-44EC-8AD7-53E8D01FD860}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F6928CC-A271-44EC-8AD7-53E8D01FD860}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15FC71F4-95F7-40B1-AA6E-FAF7C7FE96B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15FC71F4-95F7-40B1-AA6E-FAF7C7FE96B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15FC71F4-95F7-40B1-AA6E-FAF7C7FE96B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15FC71F4-95F7-40B1-AA6E-FAF7C7FE96B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
