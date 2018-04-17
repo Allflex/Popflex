@@ -64,23 +64,25 @@
 
         private static byte[] HtmlToPdf(string html)
         {
-            TuesPechkin.IConverter PdfConverter =
-                           new TuesPechkin.ThreadSafeConverter(
-                               new TuesPechkin.PdfToolset(
-                                   new TuesPechkin.WinAnyCPUEmbeddedDeployment(
-                                       new TuesPechkin.TempFolderDeployment())));
+            var PdfConverter = 
+                new TuesPechkin.ThreadSafeConverter(
+                    new TuesPechkin.PdfToolset(
+                        new TuesPechkin.WinAnyCPUEmbeddedDeployment(
+                                new TuesPechkin.TempFolderDeployment())));
 
             var globalConfig = new TuesPechkin.GlobalSettings
             {
-                DocumentTitle = "Sales Order",
-                PaperSize = System.Drawing.Printing.PaperKind.A4,
-                UseCompression = false,
-                DPI = 1200,
+                //DocumentTitle = "Sales Order",
+                //PaperSize = System.Drawing.Printing.PaperKind.A4,
+                //UseCompression = false,
+                //DPI = 1200,
                 Margins =
                 {
                     All = 0.3,
                     Unit = TuesPechkin.Unit.Centimeters
-                }
+                },
+                //ImageDPI = 1200,
+                //ImageQuality = 400
             };
 
             var document = new TuesPechkin.HtmlToPdfDocument
@@ -88,17 +90,17 @@
                 Objects = {
                     new TuesPechkin.ObjectSettings
                     {
-                        WebSettings = new TuesPechkin.WebSettings
-                        {
-                            EnableJavascript = true,
-                            LoadImages = true,
-                            PrintBackground = true,
-                            PrintMediaType = true
-                        },
-                        LoadSettings = new TuesPechkin.LoadSettings
-                        {
-                            BlockLocalFileAccess = false
-                        },
+                        //WebSettings = new TuesPechkin.WebSettings
+                        //{
+                        //    EnableJavascript = true,
+                        //    LoadImages = true,
+                        //    PrintBackground = true,
+                        //    PrintMediaType = true
+                        //},
+                        //LoadSettings = new TuesPechkin.LoadSettings
+                        //{
+                        //    BlockLocalFileAccess = false
+                        //},
 
                         HtmlText = html,
 
