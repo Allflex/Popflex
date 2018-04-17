@@ -20,7 +20,7 @@
             }
             
             var html = ToHtml(order, htmlTempalte);
-            
+            // https://www.codeproject.com/articles/12799/print-html-in-c-with-or-without-the-web-browser-co
             System.Diagnostics.Process.Start(SaveHTML(html));
             return SavePdf(html, outputPath);
         }
@@ -78,7 +78,7 @@
                 DPI = 1200,
                 Margins =
                 {
-                    All = 1.375,
+                    All = 0.3,
                     Unit = TuesPechkin.Unit.Centimeters
                 }
             };
