@@ -2,8 +2,6 @@
 {
     public class Print
     {
-        private static readonly TuesPechkin.IConverter PdfConverter = CreatePdfConverter();
-        
         public static string SalesOrder(AllfleXML.FlexOrder.OrderHeader order, string htmlTempalte = null, string outputPath = null)
         {
             var config = new AutoMapper.MapperConfiguration(cfg => cfg.CreateMap<AllfleXML.FlexOrder.OrderHeader, OrderTemplate>());
@@ -66,11 +64,42 @@
 
         private static byte[] HtmlToPdf(string html)
         {
+            TuesPechkin.IConverter PdfConverter =
+                           new TuesPechkin.ThreadSafeConverter(
+                               new TuesPechkin.PdfToolset(
+                                   new TuesPechkin.WinAnyCPUEmbeddedDeployment(
+                                       new TuesPechkin.TempFolderDeployment())));
+
+            var globalConfig = new TuesPechkin.GlobalSettings
+            {
+                DocumentTitle = "Sales Order",
+                PaperSize = System.Drawing.Printing.PaperKind.A4,
+                UseCompression = false,
+                DPI = 1200,
+                Margins =
+                {
+                    All = 1.375,
+                    Unit = TuesPechkin.Unit.Centimeters
+                }
+            };
+
             var document = new TuesPechkin.HtmlToPdfDocument
             {
                 Objects = {
                     new TuesPechkin.ObjectSettings
                     {
+                        WebSettings = new TuesPechkin.WebSettings
+                        {
+                            EnableJavascript = true,
+                            LoadImages = true,
+                            PrintBackground = true,
+                            PrintMediaType = true
+                        },
+                        LoadSettings = new TuesPechkin.LoadSettings
+                        {
+                            BlockLocalFileAccess = false
+                        },
+
                         HtmlText = html,
 
                         FooterSettings = new TuesPechkin.FooterSettings
@@ -79,18 +108,12 @@
                             RightText = "[page] of [topage]"
                         }
                     }
-                }
+                },
+                GlobalSettings = globalConfig
             };
 
-            return PdfConverter.Convert(document);
-        }
 
-        private static TuesPechkin.IConverter CreatePdfConverter()
-        {
-            var tempDeployment = new TuesPechkin.TempFolderDeployment();
-            var deployment = new TuesPechkin.WinAnyCPUEmbeddedDeployment(tempDeployment);
-            var toolset = new TuesPechkin.PdfToolset(deployment);
-            return new TuesPechkin.ThreadSafeConverter(toolset);
+            return PdfConverter.Convert(document);
         }
     }
 }
