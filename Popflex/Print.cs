@@ -2,6 +2,10 @@
 
 namespace Popflex
 {
+    // TODO: Only display price header on table if any orderLiens contain price. Do not display if no order lines contain price
+    // TODO: Offset @index for order lines +1
+    // 
+
     public class Print
     {
         public static string SalesOrder(AllfleXML.FlexOrder.OrderHeader order, string htmlTempalte = null, string outputPath = null)
@@ -56,8 +60,7 @@ namespace Popflex
 
             return result;
         }
-
-
+        
         public static string SalesOrder(OrderTemplate order, string htmlTempalte = null, string outputPath = null)
         {
             if (string.IsNullOrWhiteSpace(htmlTempalte))
