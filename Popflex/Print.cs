@@ -129,7 +129,7 @@ namespace Popflex
                 //DPI = 1200,
                 Margins =
                 {
-                    All = 0.3,
+                    All = 0,
                     Unit = TuesPechkin.Unit.Centimeters
                 },
                 //ImageDPI = 1200,
