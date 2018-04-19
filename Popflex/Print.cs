@@ -1,14 +1,62 @@
-﻿namespace Popflex
+﻿using System.Linq;
+
+namespace Popflex
 {
     public class Print
     {
         public static string SalesOrder(AllfleXML.FlexOrder.OrderHeader order, string htmlTempalte = null, string outputPath = null)
         {
-            var config = new AutoMapper.MapperConfiguration(cfg => cfg.CreateMap<AllfleXML.FlexOrder.OrderHeader, OrderTemplate>());
+            return SalesOrder(MapOrder(order), htmlTempalte, outputPath);
+        }
+
+        private static OrderTemplate MapOrder(AllfleXML.FlexOrder.OrderHeader order)
+        {
+            var config = new AutoMapper.MapperConfiguration(
+                cfg => {
+                    cfg.CreateMap<AllfleXML.FlexOrder.OrderHeader, OrderTemplate>();
+                    cfg.CreateMap<AllfleXML.FlexOrder.OrderLineHeader, OrderLineTemplate>();
+                }
+            );
             var mapper = config.CreateMapper();
 
-            return SalesOrder(mapper.Map<OrderTemplate>(order), htmlTempalte, outputPath);
+            var result = mapper.Map<OrderTemplate>(order);
+
+            result.OrderNumber = order.UserDefinedFields.Fields.SingleOrDefault(f => f.Key == "OrderNumber")?.Value;
+            result.MasterId = order.UserDefinedFields.Fields.SingleOrDefault(f => f.Key == "MasterId")?.Value;
+            result.OrderDate = order.UserDefinedFields.Fields.SingleOrDefault(f => f.Key == "OrderDate")?.Value;
+            result.DueDate = order.UserDefinedFields.Fields.SingleOrDefault(f => f.Key == "DueDate")?.Value;
+
+            result.Requisitioner = order.UserDefinedFields.Fields.SingleOrDefault(f => f.Key == "Requisitioner")?.Value;
+            result.PrePaidFreight = order.UserDefinedFields.Fields.SingleOrDefault(f => f.Key == "PrePaidFreight")?.Value;
+
+            result.BillToName = order.UserDefinedFields.Fields.SingleOrDefault(f => f.Key == "BillToName")?.Value;
+            result.BillToAddress1 = order.UserDefinedFields.Fields.SingleOrDefault(f => f.Key == "BillToAddress1")?.Value;
+            result.BillToAddress2 = order.UserDefinedFields.Fields.SingleOrDefault(f => f.Key == "BillToAddress2")?.Value;
+            result.BillToAddress3 = order.UserDefinedFields.Fields.SingleOrDefault(f => f.Key == "BillToAddress3")?.Value;
+            result.BillToCity = order.UserDefinedFields.Fields.SingleOrDefault(f => f.Key == "BillToCity")?.Value;
+            result.BillToState = order.UserDefinedFields.Fields.SingleOrDefault(f => f.Key == "BillToState")?.Value;
+            result.BillToPostalCode = order.UserDefinedFields.Fields.SingleOrDefault(f => f.Key == "BillToPostalCode")?.Value;
+            result.BillToPhone = order.UserDefinedFields.Fields.SingleOrDefault(f => f.Key == "BillToPhone")?.Value;
+
+            result.SubTotal = order.UserDefinedFields.Fields.SingleOrDefault(f => f.Key == "SubTotal")?.Value;
+            result.Tax = order.UserDefinedFields.Fields.SingleOrDefault(f => f.Key == "Tax")?.Value;
+            result.ShippingCharge = order.UserDefinedFields.Fields.SingleOrDefault(f => f.Key == "ShippingCharge")?.Value;
+            result.Total = order.UserDefinedFields.Fields.SingleOrDefault(f => f.Key == "Total")?.Value;
+
+            var i = 0;
+            foreach(var orderLine in order.OrderLineHeaders)
+            {
+                result.OrderLineHeaders[i].JobNumber = orderLine.UserDefinedFields.Fields.SingleOrDefault(f => f.Key == "JobNumber")?.Value;
+                result.OrderLineHeaders[i].SkuDescription = orderLine.UserDefinedFields.Fields.SingleOrDefault(f => f.Key == "SkuDescription")?.Value;
+                result.OrderLineHeaders[i].UnitPrice = orderLine.UserDefinedFields.Fields.SingleOrDefault(f => f.Key == "UnitPrice")?.Value;
+                result.OrderLineHeaders[i].SubTotal = orderLine.UserDefinedFields.Fields.SingleOrDefault(f => f.Key == "SubTotal")?.Value;
+
+                i++;
+            }
+
+            return result;
         }
+
 
         public static string SalesOrder(OrderTemplate order, string htmlTempalte = null, string outputPath = null)
         {

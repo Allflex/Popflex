@@ -2,7 +2,7 @@
 <Document>
 <OrderHeader>
   <CustomerNumber>32404</CustomerNumber>
-  <Comments />
+  <Comments>All pricing in this document is fabricated.</Comments>
   <PremiseID>ABC1234</PremiseID>
   <PO>198664</PO>
   <ShipToName>(1105108) Jane Doe</ShipToName>
@@ -21,12 +21,47 @@
   <EmailListError>tsturm@allflexusa.com</EmailListError>
   <EmailListTrackingInfo>tsturm@allflexusa.com</EmailListTrackingInfo>
   <EmailListEIDInfo />
+  <UserDefined>
+    <Field Key="OrderNumber">ABC123456</Field>
+    <Field Key="MasterId">12345678</Field>
+    <Field Key="OrderDate">12/01/1994</Field>
+    <Field Key="DueDate">01/21/1995</Field>
+  
+    <Field Key="Requisitioner">Joe Walsh</Field>
+    <Field Key="PrePaidFreight">No</Field>
+    
+    <Field Key="BillToName">Allflex USA, Inc.</Field>
+    <Field Key="BillToAddress1">2805 E. 14th ST</Field>
+    <Field Key="BillToCity">Dallas\Fort Worth Airport</Field>
+    <Field Key="BillToState">Texas</Field>
+    <Field Key="BillToPostalCode">75261</Field>
+    <Field Key="BillToPhone">(972) 456 - 3686</Field>
+    
+    <Field Key="SubTotal">$57.00</Field>
+    <Field Key="Tax">$2.50</Field>
+    <Field Key="ShippingCharge">$0.50</Field>
+    <Field Key="Total">$60.00</Field>
+  </UserDefined>
   <WSOrderId />
+  <OrderLineHeader>
+    <SkuName>APP-UTT</SkuName>
+    <Quantity>1</Quantity>
+    <UserDefined>
+      <Field Key="SkuDescription">Universal Applicator</Field>
+      <Field Key="UnitPrice">$0.00</Field>
+      <Field Key="SubTotal">$57.00</Field>
+    </UserDefined>
+  </OrderLineHeader>
   <OrderLineHeader>
     <SkuName>ANTXLSet3306LA</SkuName>
     <Quantity>17</Quantity>
     <Template>ANTXLSet3306LA</Template>
     <Comment />
+    <UserDefined>
+      <Field Key="SkuDescription">Destron Fearing Panel Tag</Field>
+      <Field Key="UnitPrice">$3.35</Field>
+      <Field Key="SubTotal">$57.00</Field>
+    </UserDefined>
     <OrderLineMarkingDetail>
       <Variable>
         <VariableName>Management</VariableName>

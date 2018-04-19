@@ -33,31 +33,39 @@
             <div class="col-4 center-block text-center">
                 <h1>Sales Order</h1>
                 <br />
+                {{#if OrderNumber}}
                 <div class="barcode">
                     <label>Order Number</label>
                     <br />
-                    <span>*ORD123456*</span>
+                    <span>*{{OrderNumber}}*</span>
                     <br />
-                    <label>ORD123456</label>
+                    <label>{{OrderNumber}}</label>
                 </div>
+                {{/if}}
             </div>
             <div class="col-4 text-right">
                 <div class="orderinfo">
-                    <label>PO #</label>: SOCU893489236
+                    <label>PO #</label>: {{PO}}
+                    {{#if OrderDate}}
                     <br />
-                    <label>Order Date</label>: mm/dd/yyyy
+                    <label>Order Date</label>: {{OrderDate}}
+                    {{/if}}
+                    {{#if DueDate}}
                     <br />
-                    <label>Due Date</label>: mm/dd/yyyy
+                    <label>Due Date</label>: {{DueDate}}
+                    {{/if}}
                     <br />
                 </div>
                 <br />
+                {{#if MasterId}}
                 <div class="offset-6 barcode text-center">
                     <label>Master ID</label>
                     <br />
-                    <span>*55123456*</span>
+                    <span>*{{MasterId}}*</span>
                     <br />
-                    <label>55123456</label>
+                    <label>{{MasterId}}</label>
                 </div>
+                {{/if}}
             </div>
         </div>
         <hr />
@@ -65,23 +73,25 @@
             <div class="col-6">
                 <h4>Bill To:</h4>
                 <address>
-                    BillToAddressLine1<br />
-                    BillToAddressLine2<br />
-                    BillToAddressLine3<br />
-                    BillToCity, BillToState<br />
-                    BillToZipCode<br />
-                    Phone
+                    {{#if BillToName}}{{BillToName}}<br />{{/if}}
+                    {{#if BillToAddress1}}{{BillToAddress1}}<br />{{/if}}
+                    {{#if BillToAddress2}}{{BillToAddress2}}<br />{{/if}}
+                    {{#if BillToAddress3}}{{BillToAddress3}}<br />{{/if}}
+                    {{#if BillToCity}}{{BillToCity}},{{/if}} {{#if BillToState}}{{BillToState}}{{/if}}<br />
+                    {{#if BillToPostalCode}}{{BillToPostalCode}}<br />{{/if}}
+                    {{#if Phone}}{{Phone}}{{/if}}
                 </address>
             </div>
             <div class="col-6">
                 <h4>Ship To:</h4>
                 <address>
-                    ShipToAddressLine1<br />
-                    ShipToAddressLine2<br />
-                    ShipToAddressLine3<br />
-                    ShipToCity, ShipToState<br />
-                    ShipToZipCode<br />
-                    Phone
+                    {{ShipToName}}<br />
+                    {{ShipToAddress1}}<br />
+                    {{ShipToAddress2}}<br />
+                    {{#if ShipToAddress3}}{{ShipToAddress3}}<br />{{/if}}
+                    {{ShipToCity}}, {{ShipToState}}<br />
+                    {{ShipToPostalCode}}<br />
+                    {{#if ShipToPhone}}{{ShipToPhone}}{{/if}}
                 </address>
             </div>
         </div>
@@ -101,7 +111,7 @@
                             <td>{{CustomerNumber}}</td>
                             <td>{{Requisitioner}}</td>
                             <td>{{ShipMethod}}</td>
-                            <td>{{Yes/No}}</td>
+                            <td>{{PrePaidFreight}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -123,56 +133,18 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {{#each OrderLineHeaders}}
                         <tr>
-                            <th scope="row">1</th>
-                            <td>40</td>
-                            <td>BG/25</td>
-                            <td class="text-nowrap">GXF025-Y</td>
-                            <td>Global Maxi Female Yellow 1-25</td>
-                            <td></td>
-                            <td class="text-right">$17.00</td>
-                            <td class="text-right">$680.00</td>
+                            <th scope="row">{{@index}}</th>
+                            <td>{{Quantity}}</td>
+                            <td>{{UnitOfMeasure}}</td>
+                            <td class="text-nowrap">{{SkuName}}</td>
+                            <td>{{SkuDescription}}</td>
+                            <td>{{Comment}}</td>
+                            <td class="text-right">{{UnitPrice}}</td>
+                            <td class="text-right">{{SubTotal}}</td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>5</td>
-                            <td>BG/25</td>
-                            <td class="text-nowrap">GXF025-B</td>
-                            <td>Global Maxi Female Blue 1-25</td>
-                            <td></td>
-                            <td class="text-right">$17.00</td>
-                            <td class="text-right">$85.00</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>12</td>
-                            <td>BG/25</td>
-                            <td class="text-nowrap">GXF025-G</td>
-                            <td>Global Maxi Female Green 1-25</td>
-                            <td></td>
-                            <td class="text-right">$17.00</td>
-                            <td class="text-right">$204.00</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>14</td>
-                            <td>EA</td>
-                            <td class="text-nowrap">GXF72-Y-SS</td>
-                            <td>MAXI FEM: 72 YELLOW (IMAGE, LOGO FNT & BK)</td>
-                            <td>NO LOGO; NO BACK; Line 1: TIM; Line 2: IS; Line 3: THE; Line 4: BEST;</td>
-                            <td class="text-right">$1.110</td>
-                            <td class="text-right">$15.54</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">5</th>
-                            <td>14</td>
-                            <td>EA</td>
-                            <td class="text-nowrap">GSM-Y-SS</td>
-                            <td>SMALL MALE YELLOW</td>
-                            <td></td>
-                            <td class="text-right">$0.310</td>
-                            <td class="text-right">$4.34</td>
-                        </tr>
+                        {{/each}}
                     </tbody>
                 </table>
             </div>
@@ -197,19 +169,19 @@
                     <tbody>
                         <tr>
                             <th scope="row">Subtotal</th>
-                            <td>$988.88</td>
+                            <td>{{SubTotal}}</td>
                         </tr>
                         <tr>
                             <th scope="row">Tax</th>
-                            <td>$79.1104</td>
+                            <td>{{Tax}}</td>
                         </tr>
                         <tr>
                             <th scope="row">Shipping</th>
-                            <td>$34.00</td>
+                            <td>{{ShippingCharge}}</td>
                         </tr>
                         <tr>
                             <th scope="row">Total</th>
-                            <td>$1101.99</td>
+                            <td>{{Total}}</td>
                         </tr>
                     </tbody>
                 </table>
